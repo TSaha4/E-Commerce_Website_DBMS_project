@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - E-Learning Platform</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">E-Learning</div>
+        <div class="nav-menu">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="courses.html">All Courses</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="certificates.html">Certificates</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </div>
+        <div class="nav-user" id="navUser"></div>
+    </nav>
+
+    <div class="container">
+        <div class="quiz-container">
+            <h1 id="quizTitle">Loading Quiz...</h1>
+            
+            <div id="quizContent">
+                <div class="empty-state">Loading questions...</div>
+            </div>
+            
+            <div id="quizResult" class="quiz-result">
+                <h2 id="resultScore">0%</h2>
+                <p id="resultMessage"></p>
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+                    <button class="btn btn-secondary" onclick="retakeQuiz()">Retake Quiz</button>
+                </div>
+            </div>
+            
+            <div class="actions" id="quizActions" style="display: none;">
+                <button class="btn btn-primary" id="submitQuizBtn">Submit Quiz</button>
+                <button class="btn btn-secondary" onclick="window.location.href='dashboard.html'">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/quiz.js"></script>
+</body>
+</html>

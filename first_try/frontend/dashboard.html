@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - E-Learning Platform</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">E-Learning</div>
+        <div class="nav-menu">
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="courses.html">All Courses</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="certificates.html">Certificates</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </div>
+        <div class="nav-user" id="navUser"></div>
+    </nav>
+
+    <div class="container">
+        <h1>Welcome back, <span id="studentName"></span>!</h1>
+        <p class="subtitle">Track your learning progress and achievements</p>
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 id="enrolledCount">0</h3>
+                <p>Courses Enrolled</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="completedCount">0</h3>
+                <p>Courses Completed</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="avgScore">0%</h3>
+                <p>Average Score</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="certificatesCount">0</h3>
+                <p>Certificates Earned</p>
+            </div>
+        </div>
+        
+        <!-- Enrolled Courses -->
+        <h2>Your Courses</h2>
+        <div id="coursesList" class="courses-grid"></div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - E-Learning Platform</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">E-Learning</div>
+        <div class="nav-menu">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="courses.html">All Courses</a>
+            <a href="leaderboard.html" class="active">Leaderboard</a>
+            <a href="certificates.html">Certificates</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </div>
+        <div class="nav-user" id="navUser"></div>
+    </nav>
+
+    <div class="container">
+        <h1>Leaderboard</h1>
+        <p class="subtitle">Top performers based on quiz scores and course completion</p>
+        
+        <div class="leaderboard-table">
+            <div class="leaderboard-row header">
+                <div class="rank">Rank</div>
+                <div>Student</div>
+                <div class="courses">Courses</div>
+                <div class="rank-col">Avg Score</div>
+                <div>Status</div>
+            </div>
+            <div id="leaderboardList">
+                <div class="empty-state">Loading leaderboard...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/leaderboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - E-Learning Platform</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">E-Learning</div>
+        <div class="nav-menu">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="courses.html" class="active">All Courses</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="certificates.html">Certificates</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </div>
+        <div class="nav-user" id="navUser"></div>
+    </nav>
+
+    <div class="container">
+        <h1>Available Courses</h1>
+        <div id="coursesList" class="courses-grid"></div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/courses.js"></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Detail - E-Learning Platform</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">E-Learning</div>
+        <div class="nav-menu">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="courses.html">All Courses</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="certificates.html">Certificates</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </div>
+        <div class="nav-user" id="navUser"></div>
+    </nav>
+
+    <div class="container">
+        <div id="courseDetail" class="course-detail">
+            <div class="empty-state">Loading course details...</div>
+        </div>
+        
+        <div id="modulesSection" style="display: none;">
+            <h2>Course Modules</h2>
+            <div id="modulesList"></div>
+        </div>
+        
+        <div class="actions" id="courseActions" style="display: none;">
+            <button class="btn btn-primary" id="enrollBtn">Enroll in Course</button>
+            <button class="btn btn-secondary" id="takeQuizBtn" style="display: none;">Take Quiz</button>
+            <button class="btn btn-success" id="viewCertificateBtn" style="display: none;">View Certificate</button>
+        </div>
+        
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        const student = checkAuth();
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('id');
+        
+        if (!courseId) {
+            window.location.href = 'courses.html';
+        }
+        
+        loadCourseDetail();
+        
+        async function loadCourseDetail() {
+            try {
+                const response = await fetch(`${API_URL}/courses/${courseId}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayCourseDetail(data.course, data.modules);
+                } else {
+                    document.getElementById('courseDetail').innerHTML = 
+                        '<div class="empty-state">Course not found.</div>';
+                }
+            } catch (error) {
+                console.error('Error loading course:', error);
+                document.getElementById('courseDetail').innerHTML = 
+                    '<div class="empty-state">Error loading course details.</div>';
+            }
+        }
+        
+        function displayCourseDetail(course, modules) {
+            const courseDetail = document.getElementById('courseDetail');
+            const modulesSection = document.getElementById('modulesSection');
+            const modulesList = document.getElementById('modulesList');
+            const courseActions = document.getElementById('courseActions');
+            
+            // Display course info
+            courseDetail.innerHTML = `
+                <h1>${course.title}</h1>
+                <p class="course-meta">Instructor: ${course.instructor} • Duration: ${course.duration_hours} hours</p>
+                <p>${course.description}</p>
+                <p class="course-meta">Created: ${formatDate(course.created_at)}</p>
+            `;
+            
+            // Display modules
+            if (modules && modules.length > 0) {
+                modulesList.innerHTML = modules.map(module => `
+                    <div class="module-card">
+                        <h3>Module ${module.order_num}: ${module.title}</h3>
+                        <p>${module.content}</p>
+                    </div>
+                `).join('');
+                modulesSection.style.display = 'block';
+            }
+            
+            // Check enrollment status
+            checkEnrollmentStatus(course);
+            
+            courseActions.style.display = 'block';
+        }
+        
+        async function checkEnrollmentStatus(course) {
+            try {
+                const response = await fetch(`${API_URL}/students/${student.student_id}/courses`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const enrolledCourse = data.courses.find(ec => ec.course_id == courseId);
+                    
+                    if (enrolledCourse) {
+                        document.getElementById('enrollBtn').style.display = 'none';
+                        
+                        if (enrolledCourse.completed_at) {
+                            document.getElementById('viewCertificateBtn').style.display = 'inline-block';
+                        } else {
+                            document.getElementById('takeQuizBtn').style.display = 'inline-block';
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error checking enrollment:', error);
+            }
+        }
+        
+        // Event listeners
+        document.getElementById('enrollBtn').addEventListener('click', async () => {
+            try {
+                const response = await fetch(`${API_URL}/courses/enroll`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        student_id: student.student_id,
+                        course_id: parseInt(courseId)
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage('message', 'Successfully enrolled in course!', 'success');
+                    setTimeout(() => {
+                        checkEnrollmentStatus({});
+                    }, 1000);
+                } else {
+                    showMessage('message', data.error || 'Failed to enroll in course', 'error');
+                }
+            } catch (error) {
+                showMessage('message', 'Network error. Please try again.', 'error');
+            }
+        });
+        
+        document.getElementById('takeQuizBtn').addEventListener('click', () => {
+            window.location.href = `quiz.html?courseId=${courseId}`;
+        });
+        
+        document.getElementById('viewCertificateBtn').addEventListener('click', () => {
+            window.location.href = 'certificates.html';
+        });
+        
+        // Initialize navigation
+        initNav();
+    </script>
+</body>
+</html>
