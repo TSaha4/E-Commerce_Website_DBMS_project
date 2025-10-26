@@ -7,9 +7,9 @@
 }
 
 :root {
-    --primary: #6366f1;
-    --primary-dark: #4f46e5;
-    --secondary: #8b5cf6;
+    --primary: #059669;
+    --primary-dark: #047857;
+    --secondary: #f59e0b;
     --success: #10b981;
     --danger: #ef4444;
     --warning: #f59e0b;
@@ -61,7 +61,7 @@ body {
 
 .nav-menu a:hover, .nav-menu a.active {
     color: var(--primary);
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(5, 150, 105, 0.1);
 }
 
 .nav-user {
@@ -165,7 +165,7 @@ h2 {
 .btn-primary:hover {
     background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4);
 }
 
 .btn-secondary {
@@ -174,7 +174,7 @@ h2 {
 }
 
 .btn-secondary:hover {
-    background: #7c3aed;
+    background: #d97706;
 }
 
 .btn-success {
@@ -231,7 +231,7 @@ h2 {
 
 .stat-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 8px 24px rgba(5, 150, 105, 0.2);
 }
 
 .stat-card h3 {
@@ -264,7 +264,7 @@ h2 {
 
 .course-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 8px 24px rgba(5, 150, 105, 0.3);
     border-color: var(--primary);
 }
 
@@ -320,7 +320,7 @@ h2 {
 }
 
 .badge-info {
-    background: rgba(99, 102, 241, 0.2);
+    background: rgba(5, 150, 105, 0.2);
     color: var(--primary);
     border: 1px solid var(--primary);
 }
@@ -392,12 +392,12 @@ h2 {
 
 .option:hover {
     border-color: var(--primary);
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(5, 150, 105, 0.1);
 }
 
 .option.selected {
     border-color: var(--primary);
-    background: rgba(99, 102, 241, 0.2);
+    background: rgba(5, 150, 105, 0.2);
 }
 
 .quiz-result {
@@ -423,7 +423,7 @@ h2 {
     border-radius: 16px;
     padding: 3rem;
     margin-bottom: 2rem;
-    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 8px 24px rgba(5, 150, 105, 0.3);
 }
 
 .certificate-header {
